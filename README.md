@@ -71,9 +71,9 @@ Follow these steps to run the project locally:
 6. **Open in browser**
    Go to the URL shown in your terminal (e.g., http://localhost:5173)
 
-🤝 Contributing
-Contributions are welcome!
-**To contribute:**
+- **🤝 Contributing**
+  Contributions are welcome!
+- **To contribute:**
 
 1. **Fork the project.**
 
