@@ -1,8 +1,6 @@
 # Shopping Cart UI 🛒
 
-This project is a simple shopping cart user interface built with React.  
-It demonstrates the practical use of the **useContext** hook for global state management, along with **useState** for local state.  
-Additionally, it integrates with a **JSON Server** to simulate a backend, providing a more realistic environment for testing product data and cart functionalities.
+This project is a simple shopping cart user interface built with React.It demonstrates the practical use of the **useContext** hook for global state management, along with **useState** for local state. Additionally, it integrates with a **JSON Server** to simulate a backend, providing a more realistic environment for testing product data and cart functionalities.
 
 ---
 
@@ -29,10 +27,10 @@ Additionally, it integrates with a **JSON Server** to simulate a backend, provid
 
 ## 📚 Learning Points
 
-**useContext**: Simplifies state sharing across components by avoiding prop drilling.
-**Component Structure**: Demonstrates clean design patterns for UI with shared global state.
-**JSON Server**: Provides a simple way to test API requests locally without setting up a real backend.
-**Vite**: Ensures a fast and modern development experience.
+- **useContext**: Simplifies state sharing across components by avoiding prop drilling.
+- **Component Structure**: Demonstrates clean design patterns for UI with shared global state.
+- **JSON Server**: Provides a simple way to test API requests locally without setting up a real backend.
+- **Vite**: Ensures a fast and modern development experience.
 
 ---
 
