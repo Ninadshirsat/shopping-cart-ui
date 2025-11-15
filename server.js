@@ -1,5 +1,5 @@
 import express from "express";
-import { create } from "json-server";
+import jsonServer from "json-server";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -9,20 +9,15 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // --- JSON SERVER ---
-const jsonServer = create();
-const router = create().router("src/data/db.json");
+const router = jsonServer.router("src/data/db.json");
+const middlewares = jsonServer.defaults();
 
-jsonServer.use(jsonServer.defaults());
-jsonServer.use(router);
+app.use("/api", middlewares, router);
 
-// JSON server will run under /api
-app.use("/api", jsonServer);
-
-// --- SERVE FRONTEND BUILD ---
+// --- FRONTEND ---
 const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath));
 
-// SPA fallback (React Router support)
 app.get("*", (req, res) => {
   res.sendFile(path.join(distPath, "index.html"));
 });
