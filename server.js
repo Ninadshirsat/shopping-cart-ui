@@ -1,4 +1,5 @@
 import express from "express";
+import jsonServer from "json-server";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -7,28 +8,22 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-async function startServer() {
-  // Dynamically import json-server so it works with ESM + Node 22
-  const jsonServer = (await import("json-server")).default;
+// --- JSON SERVER ---
+const router = jsonServer.router("src/data/db.json");
+const middlewares = jsonServer.defaults();
 
-  const router = jsonServer.router("src/data/db.json");
-  const middlewares = jsonServer.defaults();
+app.use("/api", middlewares, router);
 
-  // JSON API under /api
-  app.use("/api", middlewares, router);
+// --- FRONTEND ---
+const distPath = path.join(__dirname, "dist");
+app.use(express.static(distPath));
 
-  // Serve frontend
-  const distPath = path.join(__dirname, "dist");
-  app.use(express.static(distPath));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(distPath, "index.html"));
-  });
-
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
-
-startServer();
+// --- START SERVER ---
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
